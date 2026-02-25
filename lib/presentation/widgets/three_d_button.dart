@@ -84,7 +84,7 @@ class _ThreeDButtonState extends State<ThreeDButton>
                   borderRadius: BorderRadius.circular(32),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF6200EE).withValues(alpha: _isHovered ? 0.4 : 0.1),
+                      color: Colors.white.withValues(alpha: _isHovered ? 0.3 : 0.05),
                       blurRadius: 20,
                       spreadRadius: _isHovered ? 5 : 0,
                     ),
@@ -200,7 +200,7 @@ class _EnergyStreakPainter extends CustomPainter {
       final gradient = LinearGradient(
         colors: [
           Colors.transparent,
-          i == 0 ? const Color(0xFFAA00FF) : (i == 1 ? const Color(0xFF00B0FF) : Colors.white),
+          i == 0 ? Colors.white : (i == 1 ? const Color(0xFFBDBDBD) : const Color(0xFFE0E0E0)),
           Colors.transparent,
         ],
       ).createShader(rect);
