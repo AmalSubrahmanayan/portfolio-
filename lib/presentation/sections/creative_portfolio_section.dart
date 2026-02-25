@@ -87,8 +87,8 @@ class _CreativePortfolioSectionState extends State<CreativePortfolioSection> {
                   width: _currentPage == index ? 24 : 8,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: Colors.white.withValues(
-                      alpha: _currentPage == index ? 1.0 : 0.3,
+                  color: Colors.white.withOpacity(
+                      _currentPage == index ? 1.0 : 0.3,
                     ),
                     borderRadius: BorderRadius.circular(2),
                   ),
@@ -116,8 +116,10 @@ class _PortfolioDesign1 extends StatelessWidget {
         final width = constraints.maxWidth;
 
         return Stack(
+          fit: StackFit.expand,
           alignment: Alignment.center,
           children: [
+            const SizedBox.expand(),
             // Large background text "PORTFOLIO"
             IgnorePointer(
               child: Positioned(
@@ -125,7 +127,7 @@ class _PortfolioDesign1 extends StatelessWidget {
                 child: Text(
                   'PORTFOLIO',
                   style: GoogleFonts.anton(
-                    color: Colors.white.withValues(alpha: 0.9),
+                    color: Colors.white.withOpacity(0.9),
                     fontSize: isMobile ? 120 : 380,
                     letterSpacing: -5,
                   ),
@@ -168,7 +170,7 @@ class _PortfolioDesign1 extends StatelessWidget {
                   Text(
                     'DECEMBER / 2025',
                     style: GoogleFonts.montserrat(
-                      color: Colors.white.withValues(alpha: 0.7),
+                      color: Colors.white.withOpacity(0.7),
                       fontSize: isMobile ? 14 : 20,
                       fontWeight: FontWeight.w500,
                     ),
@@ -193,7 +195,7 @@ class _PortfolioDesign1 extends StatelessWidget {
               child: Text(
                 'I am a dedicated Flutter Developer with a passion for crafting high-performance, visually stunning mobile and web applications. My expertise extends into UI/UX design, ensuring every product is as intuitive as it is beautiful.',
                 style: GoogleFonts.lato(
-                  color: Colors.white.withValues(alpha: 0.6),
+                  color: Colors.white.withOpacity(0.6),
                   fontSize: isMobile ? 10 : 14,
                   height: 1.5,
                 ),
@@ -209,7 +211,7 @@ class _PortfolioDesign1 extends StatelessWidget {
                 'When I\'m not coding or designing, you\'ll likely find me submerged in the world of gaming. I believe that being a gamer enhances my perspective on interactive design and user engagement within the digital realm.',
                 textAlign: TextAlign.right,
                 style: GoogleFonts.lato(
-                  color: Colors.white.withValues(alpha: 0.6),
+                  color: Colors.white.withOpacity(0.6),
                   fontSize: isMobile ? 10 : 14,
                   height: 1.5,
                 ),
@@ -237,8 +239,10 @@ class _PortfolioDesign2 extends StatelessWidget {
         final width = constraints.maxWidth;
 
         return Stack(
+          fit: StackFit.expand,
           alignment: Alignment.center,
           children: [
+            const SizedBox.expand(),
             // Top Left: Creative Presentation
             Positioned(
               top: height * 0.05,
@@ -375,8 +379,10 @@ class _PortfolioDesign3 extends StatelessWidget {
             ),
           ),
           child: Stack(
+            fit: StackFit.expand,
             alignment: Alignment.center,
             children: [
+              const SizedBox.expand(),
               // Header Navigation
               Positioned(
                 top: height * 0.05,
@@ -431,7 +437,7 @@ class _PortfolioDesign3 extends StatelessWidget {
                     child: Text(
                       'FLUTTER',
                       style: GoogleFonts.anton(
-                        color: Colors.white.withValues(alpha: 0.95),
+                        color: Colors.white.withOpacity(0.95),
                         fontSize: isMobile ? 120 : 380,
                         letterSpacing: -5,
                       ),
@@ -447,7 +453,7 @@ class _PortfolioDesign3 extends StatelessWidget {
                   'assets/images/amal3-.png', // Placeholder
                   height: height * 0.9,
                   fit: BoxFit.contain,
-                  color: Colors.orange.withValues(alpha: 0.1),
+                  color: Colors.orange.withOpacity(0.1),
                   colorBlendMode: BlendMode.darken,
                 ),
               ),

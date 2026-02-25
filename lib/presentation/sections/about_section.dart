@@ -70,7 +70,7 @@ class AboutSection extends StatelessWidget {
           // Zigzag placeholder
           Text(
             "\\/\\/\\/\\/\\/\\/",
-            style: TextStyle(color: AppColors.textSecondary.withValues(alpha: 0.5), letterSpacing: 2),
+            style: TextStyle(color: AppColors.textSecondary.withOpacity(0.5), letterSpacing: 2),
           ),
           const SizedBox(height: 80),
 
@@ -96,7 +96,7 @@ class AboutSection extends StatelessWidget {
           // Zigzag placeholder
           Text(
             "\\/\\/\\/\\/\\/\\/",
-            style: TextStyle(color: AppColors.textSecondary.withValues(alpha: 0.5), letterSpacing: 2),
+            style: TextStyle(color: AppColors.textSecondary.withOpacity(0.5), letterSpacing: 2),
           ),
         ],
       ),
@@ -149,7 +149,7 @@ class _ServiceItem extends StatelessWidget {
               child: FaIcon(
                 icon,
                 size: 48,
-                color: AppColors.textSecondary.withValues(alpha: 0.1),
+                color: AppColors.textSecondary.withOpacity(0.1),
               ),
             ),
             Text(
