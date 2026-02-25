@@ -96,6 +96,8 @@ class HeroSection extends StatelessWidget {
                 ),
                 const SizedBox(height: 32),
                 _buildSocialIcons(),
+                const SizedBox(height: 32),
+                _buildResumeButton(context),
               ],
             ),
           ),
@@ -166,6 +168,8 @@ class HeroSection extends StatelessWidget {
                 ),
                 const SizedBox(height: 32),
                 _buildSocialIcons(center: true),
+                const SizedBox(height: 32),
+                _buildResumeButton(context),
                 const SizedBox(height: 48),
                 Container(
                   height: 400,
@@ -312,6 +316,34 @@ class HeroSection extends StatelessWidget {
     if (!await launchUrl(url)) {
       throw Exception('Could not launch email');
     }
+  }
+
+  Future<void> _launchResume() async {
+    final Uri url = Uri.parse(
+      'https://drive.google.com/file/d/1_FhmvDPW0o0_TtYxi1EV9DdBYhJR1dt1/view?usp=sharing',
+    );
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch resume');
+    }
+  }
+
+  Widget _buildResumeButton(BuildContext context) {
+    return OutlinedButton(
+      onPressed: _launchResume,
+      style: OutlinedButton.styleFrom(
+        side: const BorderSide(color: AppColors.primaryBlack, width: 2),
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+      ),
+      child: Text(
+        "VIEW RESUME",
+        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+          color: AppColors.primaryBlack,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 2.0,
+        ),
+      ),
+    );
   }
 }
 
