@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/constants/app_colors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../presentation/widgets/animated_background.dart';
+import '../../presentation/widgets/three_d_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HeroSection extends StatelessWidget {
@@ -328,21 +329,9 @@ class HeroSection extends StatelessWidget {
   }
 
   Widget _buildResumeButton(BuildContext context) {
-    return OutlinedButton(
+    return ThreeDButton(
       onPressed: _launchResume,
-      style: OutlinedButton.styleFrom(
-        side: const BorderSide(color: AppColors.primaryBlack, width: 2),
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-      ),
-      child: Text(
-        "VIEW RESUME",
-        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-          color: AppColors.primaryBlack,
-          fontWeight: FontWeight.bold,
-          letterSpacing: 2.0,
-        ),
-      ),
+      text: "VIEW RESUME",
     );
   }
 }
