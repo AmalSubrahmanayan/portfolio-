@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/constants/app_colors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../presentation/widgets/globe_background.dart';
+import '../../presentation/widgets/animated_background.dart';
 import '../../presentation/widgets/three_d_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -42,18 +42,12 @@ class HeroSection extends StatelessWidget {
             child: Stack(
               children: [
                 Container(color: AppColors.backgroundDark),
-                const Positioned.fill(child: GlobeBackground()),
+                const Positioned.fill(child: AnimatedBackground()),
               ],
             ),
           ),
 
-          // Navigation Bar (Transparent to show the split background)
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: _buildNavigationBar(context),
-          ),
+
 
           // Main Content Left
           Positioned(
@@ -132,7 +126,7 @@ class HeroSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildNavigationBar(context, isMobile: true),
+
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 24.0,
@@ -190,79 +184,7 @@ class HeroSection extends StatelessWidget {
     );
   }
 
-  Widget _buildNavigationBar(BuildContext context, {bool isMobile = false}) {
-    return Container(
-      width: double.infinity,
-      color: AppColors.backgroundDark,
-      padding: EdgeInsets.symmetric(
-        horizontal: isMobile ? 24 : MediaQuery.of(context).size.width * 0.1,
-        vertical: 20,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          // Logo placeholder
-          const Text(
-            "AS",
-            style: TextStyle(
-              color: AppColors.surfaceWhite,
-              fontWeight: FontWeight.bold,
-              fontSize: 24,
-              letterSpacing: 2,
-            ),
-          ),
 
-          if (!isMobile)
-            Row(
-              children: [
-                _navItem("About me", onAboutMePressed),
-                const SizedBox(width: 32),
-                _navItem("Skills", onSkillsPressed),
-                const SizedBox(width: 32),
-                _navItem("Portfolio", onPortfolioPressed),
-                const SizedBox(width: 32),
-                ElevatedButton(
-                  onPressed: onContactPressed,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.surfaceWhite,
-                    foregroundColor: AppColors.primaryBlack,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 16,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(24),
-                    ),
-                  ),
-                  child: Text(
-                    "CONTACT ME",
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.primaryBlack,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.2,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-        ],
-      ),
-    );
-  }
-
-  Widget _navItem(String title, VoidCallback? onPressed) {
-    return InkWell(
-      onTap: onPressed,
-      child: Text(
-        title,
-        style: const TextStyle(
-          color: AppColors.surfaceWhite,
-          fontWeight: FontWeight.w600,
-          fontSize: 14,
-        ),
-      ),
-    );
-  }
 
   Widget _buildSocialIcons({bool center = false}) {
     return Row(
