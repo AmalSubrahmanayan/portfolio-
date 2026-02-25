@@ -140,7 +140,7 @@ class _ProjectCard extends StatelessWidget {
       padding: const EdgeInsets.all(32),
       decoration: BoxDecoration(
         color: AppColors.primaryBlack,
-        border: Border.all(color: AppColors.textSecondary.withValues(alpha: 0.2)),
+        border: Border.all(color: AppColors.textSecondary.withOpacity(0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -131,7 +131,7 @@ class _ContactForm extends StatelessWidget {
         filled: true,
         fillColor: AppColors.backgroundLight,
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.primaryBlack.withValues(alpha: 0.2), width: 1),
+          borderSide: BorderSide(color: AppColors.primaryBlack.withOpacity(0.2), width: 1),
           borderRadius: BorderRadius.zero,
         ),
         focusedBorder: const OutlineInputBorder(

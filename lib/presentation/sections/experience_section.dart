@@ -193,7 +193,7 @@ class _ExperienceTimelineNode extends StatelessWidget {
                 Container(
                   width: 2,
                   height: 200, // Approximate height to connect to the next item
-                  color: AppColors.primaryBlack.withValues(alpha: 0.2),
+                  color: AppColors.primaryBlack.withOpacity(0.2),
                 ),
             ],
           ),

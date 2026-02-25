@@ -281,7 +281,7 @@ class HeroSection extends StatelessWidget {
         width: 48,
         height: 48,
         decoration: BoxDecoration(
-          color: AppColors.textSecondary.withValues(alpha: 0.2),
+          color: AppColors.textSecondary.withOpacity(0.2),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Center(
