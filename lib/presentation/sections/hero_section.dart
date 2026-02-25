@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/constants/app_colors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../presentation/widgets/animated_background.dart';
+import '../../presentation/widgets/globe_background.dart';
 import '../../presentation/widgets/three_d_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -42,7 +42,7 @@ class HeroSection extends StatelessWidget {
             child: Stack(
               children: [
                 Container(color: AppColors.backgroundDark),
-                const Positioned.fill(child: AnimatedBackground()),
+                const Positioned.fill(child: GlobeBackground()),
               ],
             ),
           ),
