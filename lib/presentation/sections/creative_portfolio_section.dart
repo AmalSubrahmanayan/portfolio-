@@ -121,9 +121,9 @@ class _PortfolioDesign1 extends StatelessWidget {
           children: [
             const SizedBox.expand(),
             // Large background text "PORTFOLIO"
-            IgnorePointer(
-              child: Positioned(
-                bottom: height * 0.1,
+            Positioned(
+              bottom: height * 0.1,
+              child: IgnorePointer(
                 child: Text(
                   'PORTFOLIO',
                   style: GoogleFonts.anton(
@@ -431,8 +431,8 @@ class _PortfolioDesign3 extends StatelessWidget {
               ),
 
               // Background Text "FLUTTER"
-              IgnorePointer(
-                child: Positioned(
+              Positioned(
+                child: IgnorePointer(
                   child: Center(
                     child: Text(
                       'FLUTTER',
