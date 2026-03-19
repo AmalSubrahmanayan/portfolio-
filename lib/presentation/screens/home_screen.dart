@@ -7,6 +7,7 @@ import '../sections/projects_section.dart';
 import '../sections/contact_section.dart';
 import '../sections/creative_portfolio_section.dart';
 import '../widgets/portfolio_navigation_bar.dart';
+import 'mobile_layout.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -121,6 +122,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (MediaQuery.of(context).size.width < 900) {
+      return const MobileLayout();
+    }
+
     return Scaffold(
       body: Stack(
         children: [

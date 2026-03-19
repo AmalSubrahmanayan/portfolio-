@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../presentation/widgets/animated_background.dart';
 import '../../presentation/widgets/three_d_button.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class HeroSection extends StatelessWidget {
   final VoidCallback? onAboutMePressed;
@@ -81,7 +82,7 @@ class HeroSection extends StatelessWidget {
                 InkWell(
                   onTap: _launchEmail,
                   child: Text(
-                    "amalsubru@gmail.com",
+                    dotenv.env['EMAIL_ADDRESS'] ?? "",
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: AppColors.textSecondary,
                       fontWeight: FontWeight.w500,
@@ -145,7 +146,7 @@ class HeroSection extends StatelessWidget {
                 InkWell(
                   onTap: _launchEmail,
                   child: Text(
-                    "amalsubru@gmail.com",
+                    dotenv.env['EMAIL_ADDRESS'] ?? "",
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: AppColors.textSecondary,
                       fontWeight: FontWeight.w500,
@@ -220,7 +221,7 @@ class HeroSection extends StatelessWidget {
 
   Future<void> _launchLinkedIn() async {
     final Uri url = Uri.parse(
-      'https://www.linkedin.com/in/amal-subrahmanyan-832082209/',
+      dotenv.env['LINKEDIN_URL'] ?? '',
     );
     if (!await launchUrl(url)) {
       throw Exception('Could not launch LinkedIn');
@@ -228,14 +229,14 @@ class HeroSection extends StatelessWidget {
   }
 
   Future<void> _launchGitHub() async {
-    final Uri url = Uri.parse('https://github.com/AmalSubrahmanayan');
+    final Uri url = Uri.parse(dotenv.env['GITHUB_URL'] ?? '');
     if (!await launchUrl(url)) {
       throw Exception('Could not launch GitHub');
     }
   }
 
   Future<void> _launchEmail() async {
-    final Uri url = Uri.parse('mailto:amalsubru@gmail.com');
+    final Uri url = Uri.parse('mailto:${dotenv.env['EMAIL_ADDRESS'] ?? ''}');
     if (!await launchUrl(url)) {
       throw Exception('Could not launch email');
     }
@@ -243,7 +244,7 @@ class HeroSection extends StatelessWidget {
 
   Future<void> _launchResume() async {
     final Uri url = Uri.parse(
-      'https://drive.google.com/file/d/1_FhmvDPW0o0_TtYxi1EV9DdBYhJR1dt1/view?usp=sharing',
+      dotenv.env['RESUME_URL'] ?? '',
     );
     if (!await launchUrl(url)) {
       throw Exception('Could not launch resume');

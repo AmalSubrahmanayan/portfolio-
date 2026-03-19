@@ -170,13 +170,11 @@ class _ProjectCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 16),
-          Expanded(
-            child: Text(
-              project.description,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppColors.textSecondary,
-                height: 1.8,
-              ),
+          Text(
+            project.description,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: AppColors.textSecondary,
+              height: 1.8,
             ),
           ),
           const SizedBox(height: 24),

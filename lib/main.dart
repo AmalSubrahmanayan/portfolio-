@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'core/theme/app_theme.dart';
 import 'presentation/screens/home_screen.dart';
 
-void main() {
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   runApp(const PortfolioApp());
 }
 

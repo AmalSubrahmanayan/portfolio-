@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/constants/app_colors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
 
@@ -161,14 +161,14 @@ class _ContactInfo extends StatelessWidget {
         const SizedBox(height: 32),
         _buildInfoItem(
           context,
-          "amalsubru@gmail.com",
+          dotenv.env['EMAIL_ADDRESS'] ?? "",
           "Email Address",
           FontAwesomeIcons.envelope,
         ),
         const SizedBox(height: 32),
         _buildInfoItem(
           context,
-          "+91 9562666753",
+          dotenv.env['PHONE_NUMBER'] ?? "",
           "Phone Number",
           FontAwesomeIcons.phone,
         ),
