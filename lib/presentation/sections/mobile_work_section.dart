@@ -9,18 +9,18 @@ class MobileWorkSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.backgroundDark,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ExperienceSection(),
-              ProjectsSection(),
-              const CreativePortfolioSection(),
-            ],
-          ),
+    return Container(
+      color: AppColors.backgroundDark,
+      child: SafeArea(
+        top: false,
+        bottom: false,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ExperienceSection(),
+            ProjectsSection(),
+            const CreativePortfolioSection(),
+          ],
         ),
       ),
     );

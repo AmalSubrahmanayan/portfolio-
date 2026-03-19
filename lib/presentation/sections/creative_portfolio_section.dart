@@ -128,8 +128,8 @@ class _PortfolioDesign1 extends StatelessWidget {
                   'PORTFOLIO',
                   style: GoogleFonts.anton(
                     color: Colors.white.withOpacity(0.9),
-                    fontSize: isMobile ? 120 : 380,
-                    letterSpacing: -5,
+                    fontSize: isMobile ? 64 : 380,
+                    letterSpacing: isMobile ? 2 : -5,
                   ),
                 ),
               ),
@@ -187,36 +187,54 @@ class _PortfolioDesign1 extends StatelessWidget {
               ),
             ),
 
-            // Bottom Lorem Ipsum - Left Column
-            Positioned(
-              bottom: height * 0.1,
-              left: width * 0.05,
-              width: width * 0.35,
-              child: Text(
-                'I am a dedicated Flutter Developer with a passion for crafting high-performance, visually stunning mobile and web applications. My expertise extends into UI/UX design, ensuring every product is as intuitive as it is beautiful.',
-                style: GoogleFonts.lato(
-                  color: Colors.white.withOpacity(0.6),
-                  fontSize: isMobile ? 10 : 14,
-                  height: 1.5,
+            // Bottom Text
+            if (isMobile)
+              Positioned(
+                bottom: height * 0.1,
+                left: width * 0.05,
+                width: width * 0.9,
+                child: Text(
+                  'I am a dedicated Flutter Developer with a passion for crafting high-performance, visually stunning mobile and web applications. My expertise extends into UI/UX design, ensuring every product is as intuitive as it is beautiful.',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.lato(
+                    color: Colors.white.withOpacity(0.8),
+                    fontSize: 11,
+                    height: 1.5,
+                  ),
+                ),
+              )
+            else ...[
+              // Bottom Lorem Ipsum - Left Column
+              Positioned(
+                bottom: height * 0.1,
+                left: width * 0.05,
+                width: width * 0.35,
+                child: Text(
+                  'I am a dedicated Flutter Developer with a passion for crafting high-performance, visually stunning mobile and web applications. My expertise extends into UI/UX design, ensuring every product is as intuitive as it is beautiful.',
+                  style: GoogleFonts.lato(
+                    color: Colors.white.withOpacity(0.6),
+                    fontSize: 14,
+                    height: 1.5,
+                  ),
                 ),
               ),
-            ),
 
-            // Bottom Lorem Ipsum - Right Column
-            Positioned(
-              bottom: height * 0.1,
-              right: width * 0.05,
-              width: width * 0.35,
-              child: Text(
-                'When I\'m not coding or designing, you\'ll likely find me submerged in the world of gaming. I believe that being a gamer enhances my perspective on interactive design and user engagement within the digital realm.',
-                textAlign: TextAlign.right,
-                style: GoogleFonts.lato(
-                  color: Colors.white.withOpacity(0.6),
-                  fontSize: isMobile ? 10 : 14,
-                  height: 1.5,
+              // Bottom Lorem Ipsum - Right Column
+              Positioned(
+                bottom: height * 0.1,
+                right: width * 0.05,
+                width: width * 0.35,
+                child: Text(
+                  'When I\'m not coding or designing, you\'ll likely find me submerged in the world of gaming. I believe that being a gamer enhances my perspective on interactive design and user engagement within the digital realm.',
+                  textAlign: TextAlign.right,
+                  style: GoogleFonts.lato(
+                    color: Colors.white.withOpacity(0.6),
+                    fontSize: 14,
+                    height: 1.5,
+                  ),
                 ),
               ),
-            ),
+            ],
           ],
         );
       },
@@ -274,8 +292,8 @@ class _PortfolioDesign2 extends StatelessWidget {
                 textAlign: TextAlign.center,
                 text: TextSpan(
                   style: GoogleFonts.anton(
-                    fontSize: isMobile ? 80 : 280,
-                    letterSpacing: isMobile ? 2 : 10,
+                    fontSize: isMobile ? 56 : 280,
+                    letterSpacing: isMobile ? 4 : 10,
                   ),
                   children: [
                     TextSpan(
@@ -311,8 +329,8 @@ class _PortfolioDesign2 extends StatelessWidget {
                 textAlign: TextAlign.center,
                 text: TextSpan(
                   style: GoogleFonts.anton(
-                    fontSize: isMobile ? 80 : 280,
-                    letterSpacing: isMobile ? 2 : 10,
+                    fontSize: isMobile ? 56 : 280,
+                    letterSpacing: isMobile ? 4 : 10,
                   ),
                   children: [
                     const TextSpan(
@@ -340,7 +358,7 @@ class _PortfolioDesign2 extends StatelessWidget {
             // Bottom Right: URL
             Positioned(
               bottom: height * 0.1,
-              right: width * 0.05,
+              right: isMobile ? null : width * 0.05,
               child: Text(
                 'www.Amalsubrahmanyan.com',
                 style: GoogleFonts.montserrat(
@@ -438,8 +456,8 @@ class _PortfolioDesign3 extends StatelessWidget {
                       'FLUTTER',
                       style: GoogleFonts.anton(
                         color: Colors.white.withOpacity(0.95),
-                        fontSize: isMobile ? 120 : 380,
-                        letterSpacing: -5,
+                        fontSize: isMobile ? 64 : 380,
+                        letterSpacing: isMobile ? 2 : -5,
                       ),
                     ),
                   ),
@@ -524,27 +542,9 @@ class _PortfolioDesign4 extends StatelessWidget {
           ),
           const Spacer(),
           // Main Content
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Left: Vertical Image
-              Expanded(
-                flex: 2,
-                child: Container(
-                  height: isMobile ? 300 : 450,
-                  decoration: BoxDecoration(
-                    image: const DecorationImage(
-                      image: AssetImage('assets/images/profile.png'),
-                      fit: BoxFit.cover,
-                    ),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 40),
-              // Right: Text and Sub-images
-              Expanded(
-                flex: 5,
+          if (isMobile)
+            Expanded(
+              child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -552,7 +552,7 @@ class _PortfolioDesign4 extends StatelessWidget {
                       'DESIGN',
                       style: GoogleFonts.anton(
                         color: Colors.black,
-                        fontSize: isMobile ? 48 : 84,
+                        fontSize: 48,
                         letterSpacing: -2,
                       ),
                     ),
@@ -561,29 +561,29 @@ class _PortfolioDesign4 extends StatelessWidget {
                       'I am a dedicated Flutter Developer with a passion for crafting high-performance, visually stunning mobile and web applications. My expertise extends into UI/UX design, ensuring every product is as intuitive as it is beautiful.',
                       style: GoogleFonts.lato(
                         color: Colors.black87,
-                        fontSize: isMobile ? 12 : 16,
+                        fontSize: 12,
                         height: 1.5,
                       ),
                     ),
-                    const SizedBox(height: 70),
+                    const SizedBox(height: 24),
                     // Small Images Row
                     Row(
                       children: [
                         _smallImageItem(
                           'assets/images/logo_music_beats.png',
-                          'Music Beats Logo',
+                          'Music Beats',
                           isMobile,
                         ),
-                        const SizedBox(width: 16),
+                        const SizedBox(width: 8),
                         _smallImageItem(
                           'assets/images/logo_cloner.png',
-                          'App Icon Design',
+                          'App Icon',
                           isMobile,
                         ),
-                        const SizedBox(width: 16),
+                        const SizedBox(width: 8),
                         _smallImageItem(
                           'assets/images/character_dharavi.png',
-                          'Character Illustration',
+                          'Character',
                           isMobile,
                         ),
                       ],
@@ -591,8 +591,81 @@ class _PortfolioDesign4 extends StatelessWidget {
                   ],
                 ),
               ),
-            ],
-          ),
+            )
+          else
+            Expanded(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Left: Vertical Image
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      height: 450,
+                      decoration: BoxDecoration(
+                        image: const DecorationImage(
+                          image: AssetImage('assets/images/profile.png'),
+                          fit: BoxFit.cover,
+                        ),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 40),
+                  // Right: Text and Sub-images
+                  Expanded(
+                    flex: 5,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'DESIGN',
+                            style: GoogleFonts.anton(
+                              color: Colors.black,
+                              fontSize: 84,
+                              letterSpacing: -2,
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          Text(
+                            'I am a dedicated Flutter Developer with a passion for crafting high-performance, visually stunning mobile and web applications. My expertise extends into UI/UX design, ensuring every product is as intuitive as it is beautiful.',
+                            style: GoogleFonts.lato(
+                              color: Colors.black87,
+                              fontSize: 16,
+                              height: 1.5,
+                            ),
+                          ),
+                          const SizedBox(height: 70),
+                          // Small Images Row
+                          Row(
+                            children: [
+                              _smallImageItem(
+                                'assets/images/logo_music_beats.png',
+                                'Music Beats Logo',
+                                isMobile,
+                              ),
+                              const SizedBox(width: 16),
+                              _smallImageItem(
+                                'assets/images/logo_cloner.png',
+                                'App Icon Design',
+                                isMobile,
+                              ),
+                              const SizedBox(width: 16),
+                              _smallImageItem(
+                                'assets/images/character_dharavi.png',
+                                'Character Illustration',
+                                isMobile,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           const Spacer(),
         ],
       ),

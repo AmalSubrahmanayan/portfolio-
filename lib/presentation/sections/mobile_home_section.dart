@@ -9,9 +9,13 @@ class MobileHomeSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.primaryBlack,
-      body: Stack(
+    final size = MediaQuery.of(context).size;
+    
+    return Container(
+      width: size.width,
+      height: size.height,
+      color: AppColors.primaryBlack,
+      child: Stack(
         children: [
           // Background Full-Screen Image
           Positioned.fill(
@@ -175,7 +179,7 @@ class MobileHomeSection extends StatelessWidget {
                                 ),
                               ),
                               child: const Text(
-                                "DOWNLOAD RESUME",
+                                "RESUME",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,

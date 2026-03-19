@@ -7,11 +7,12 @@ class MobileAboutSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.backgroundDark,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
+    return Container(
+      color: AppColors.backgroundDark,
+      child: SafeArea(
+        top: false,
+        bottom: false,
+        child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
@@ -82,7 +83,6 @@ class MobileAboutSection extends StatelessWidget {
               const SkillsSection(),
             ],
           ),
-        ),
       ),
     );
   }

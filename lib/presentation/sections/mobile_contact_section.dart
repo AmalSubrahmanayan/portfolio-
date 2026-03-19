@@ -2,16 +2,51 @@ import 'package:flutter/material.dart';
 import '../../core/constants/app_colors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-class MobileContactSection extends StatelessWidget {
+import 'package:url_launcher/url_launcher.dart';
+class MobileContactSection extends StatefulWidget {
   const MobileContactSection({super.key});
 
   @override
+  State<MobileContactSection> createState() => _MobileContactSectionState();
+}
+
+class _MobileContactSectionState extends State<MobileContactSection> {
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _messageController = TextEditingController();
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _messageController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _sendToWhatsApp() async {
+    final name = _nameController.text.trim();
+    final email = _emailController.text.trim();
+    final message = _messageController.text.trim();
+
+    if (name.isEmpty || message.isEmpty) return;
+
+    final targetPhone = dotenv.env['PHONE_NUMBER']?.replaceAll(RegExp(r'[^0-9]'), '') ?? "";
+    final text = "Hello Amal,\n\nI am $name.\nEmail: $email\n\n$message";
+    final url = Uri.parse("https://wa.me/$targetPhone?text=${Uri.encodeComponent(text)}");
+
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.backgroundDark,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
+    return Container(
+      color: AppColors.backgroundDark,
+      child: SafeArea(
+        top: false,
+        bottom: false,
+        child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,11 +103,11 @@ class MobileContactSection extends StatelessWidget {
                 const SizedBox(height: 24),
 
                 // Form Fields
-                _buildTextField("Your Name"),
+                _buildTextField("Your Name", controller: _nameController),
                 const SizedBox(height: 16),
-                _buildTextField("Your Email", keyboardType: TextInputType.emailAddress),
+                _buildTextField("Your Email", controller: _emailController, keyboardType: TextInputType.emailAddress),
                 const SizedBox(height: 16),
-                _buildTextField("Message", maxLines: 5),
+                _buildTextField("Message", controller: _messageController, maxLines: 5),
                 const SizedBox(height: 32),
 
                 // Submit Button
@@ -96,7 +131,7 @@ class MobileContactSection extends StatelessWidget {
                       ],
                     ),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: _sendToWhatsApp,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent,
@@ -119,7 +154,6 @@ class MobileContactSection extends StatelessWidget {
               ],
             ),
           ),
-        ),
       ),
     );
   }
@@ -170,8 +204,9 @@ class MobileContactSection extends StatelessWidget {
     );
   }
 
-  Widget _buildTextField(String hint, {int maxLines = 1, TextInputType? keyboardType}) {
+  Widget _buildTextField(String hint, {TextEditingController? controller, int maxLines = 1, TextInputType? keyboardType}) {
     return TextField(
+      controller: controller,
       maxLines: maxLines,
       keyboardType: keyboardType,
       style: const TextStyle(color: AppColors.surfaceWhite, fontSize: 14),

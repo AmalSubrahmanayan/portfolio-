@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/constants/app_colors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:url_launcher/url_launcher.dart';
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
 
@@ -71,30 +72,69 @@ class ContactSection extends StatelessWidget {
   }
 }
 
-class _ContactForm extends StatelessWidget {
+class _ContactForm extends StatefulWidget {
   const _ContactForm();
+
+  @override
+  State<_ContactForm> createState() => _ContactFormState();
+}
+
+class _ContactFormState extends State<_ContactForm> {
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _subjectController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _messageController = TextEditingController();
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _subjectController.dispose();
+    _phoneController.dispose();
+    _messageController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _sendToWhatsApp() async {
+    final name = _nameController.text.trim();
+    final email = _emailController.text.trim();
+    final subject = _subjectController.text.trim();
+    final phone = _phoneController.text.trim();
+    final message = _messageController.text.trim();
+
+    if (name.isEmpty || message.isEmpty) return;
+
+    final targetPhone = dotenv.env['PHONE_NUMBER']?.replaceAll(RegExp(r'[^0-9]'), '') ?? "";
+    final text = "Hello Amal,\n\nI am $name.\nEmail: $email\nPhone: $phone\nSubject: $subject\n\n$message";
+    final url = Uri.parse("https://wa.me/$targetPhone?text=${Uri.encodeComponent(text)}");
+
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildTextField("ENTER YOUR SUBJECT", isEmail: false),
+        _buildTextField("ENTER YOUR SUBJECT", controller: _subjectController),
         const SizedBox(height: 24),
         Row(
           children: [
-            Expanded(child: _buildTextField("ENTER YOUR NAME*", isEmail: false)),
+            Expanded(child: _buildTextField("ENTER YOUR NAME*", controller: _nameController)),
             const SizedBox(width: 24),
-            Expanded(child: _buildTextField("ENTER YOUR EMAIL*", isEmail: true)),
+            Expanded(child: _buildTextField("ENTER YOUR EMAIL*", controller: _emailController, keyboardType: TextInputType.emailAddress)),
           ],
         ),
         const SizedBox(height: 24),
-        _buildTextField("PHONE NUMBER", isEmail: false),
+        _buildTextField("PHONE NUMBER", controller: _phoneController, keyboardType: TextInputType.phone),
         const SizedBox(height: 24),
-        _buildTextField("YOUR MESSAGE*", isEmail: false, maxLines: 5),
+        _buildTextField("YOUR MESSAGE*", controller: _messageController, maxLines: 5),
         const SizedBox(height: 32),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: _sendToWhatsApp,
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.backgroundLight,
             foregroundColor: AppColors.primaryBlack,
@@ -116,9 +156,11 @@ class _ContactForm extends StatelessWidget {
     );
   }
 
-  Widget _buildTextField(String hint, {required bool isEmail, int maxLines = 1}) {
+  Widget _buildTextField(String hint, {TextEditingController? controller, int maxLines = 1, TextInputType? keyboardType}) {
     return TextField(
+      controller: controller,
       maxLines: maxLines,
+      keyboardType: keyboardType,
       style: const TextStyle(color: AppColors.primaryBlack, fontSize: 14),
       decoration: InputDecoration(
         hintText: hint,
