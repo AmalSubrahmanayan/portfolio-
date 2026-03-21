@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import '../sections/hero_section.dart';
 import '../sections/about_section.dart';
 import '../sections/skills_section.dart';
@@ -122,7 +123,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (MediaQuery.of(context).size.width < 900) {
+    final bool isMobilePlatform = kIsWeb && 
+        (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.android);
+    final bool isMobileDesktop = MediaQuery.of(context).size.width < 900;
+    final bool isMobile = isMobilePlatform || isMobileDesktop;
+
+    if (isMobile) {
       return const MobileLayout();
     }
 
@@ -159,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onSkillsPressed: () => _scrollToSection(_skillsKey, NavigationSection.skills),
               onPortfolioPressed: () => _scrollToSection(_portfolioKey, NavigationSection.portfolio),
               onContactPressed: () => _scrollToSection(_contactKey, NavigationSection.contact),
-              isMobile: MediaQuery.of(context).size.width < 900,
+              isMobile: isMobile,
             ),
           ),
         ],

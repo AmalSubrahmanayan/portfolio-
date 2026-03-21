@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import '../../core/constants/app_colors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../presentation/widgets/animated_background.dart';
@@ -23,7 +24,9 @@ class HeroSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final isMobile = size.width < 900;
+    final bool isMobilePlatform = kIsWeb && 
+        (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.android);
+    final isMobile = isMobilePlatform || size.width < 900;
 
     if (isMobile) {
       return _buildMobileLayout(context, size);
