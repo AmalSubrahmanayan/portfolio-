@@ -123,7 +123,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (MediaQuery.of(context).size.width < 900) {
+    // Force mobile layout on iOS and Android devices (which catches iPhones but usually ignores iPads on iOS 13+ as they report macOS)
+    final isMobilePlatform = kIsWeb && (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.android);
+    
+    if (MediaQuery.of(context).size.width < 900 || isMobilePlatform) {
       return const MobileLayout();
     }
 

@@ -130,9 +130,11 @@ class HeroSection extends StatelessWidget {
         children: [
 
           Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 24.0,
-              vertical: 48.0,
+            padding: const EdgeInsets.only(
+              left: 24.0,
+              right: 24.0,
+              top: 100.0,
+              bottom: 48.0,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
