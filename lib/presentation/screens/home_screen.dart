@@ -123,12 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final bool isMobilePlatform = kIsWeb && 
-        (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.android);
-    final bool isMobileDesktop = MediaQuery.of(context).size.width < 900;
-    final bool isMobile = isMobilePlatform || isMobileDesktop;
-
-    if (isMobile) {
+    if (MediaQuery.of(context).size.width < 900) {
       return const MobileLayout();
     }
 
@@ -165,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onSkillsPressed: () => _scrollToSection(_skillsKey, NavigationSection.skills),
               onPortfolioPressed: () => _scrollToSection(_portfolioKey, NavigationSection.portfolio),
               onContactPressed: () => _scrollToSection(_contactKey, NavigationSection.contact),
-              isMobile: isMobile,
+              isMobile: MediaQuery.of(context).size.width < 900,
             ),
           ),
         ],

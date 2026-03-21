@@ -24,9 +24,7 @@ class HeroSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final bool isMobilePlatform = kIsWeb && 
-        (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.android);
-    final isMobile = isMobilePlatform || size.width < 900;
+    final isMobile = size.width < 900;
 
     if (isMobile) {
       return _buildMobileLayout(context, size);
